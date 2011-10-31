@@ -3,14 +3,14 @@
 \author{Shawn Tan (U096883L)}
 \date{}
 \documentclass[12pt]{article}
-	\addtolength{\oddsidemargin}{-.875in}
-	\addtolength{\evensidemargin}{-.875in}
-	\addtolength{\textwidth}{1.5in}
-	\addtolength{\topmargin}{-1in}
-	\addtolength{\textheight}{2in}
+	\addtolength{\oddsidemargin}{-0.7in}
+	\addtolength{\evensidemargin}{-0.7in}
+	\addtolength{\textwidth}{1.2in}
+	\addtolength{\topmargin}{-0.5in}
+	\addtolength{\textheight}{1.5in}
 \usepackage[compact]{titlesec}
 \usepackage{amsmath}
-
+\usepackage{url}
 %\titlespacing{\section}{0pt}{*0}{*0}
 %\titlespacing{\subsection}{0pt}{*0}{*0}
 %\titlespacing{\subsubsection}{0pt}{*0}{*0}
@@ -18,6 +18,42 @@
 \begin{document}
 \maketitle
 \section{Introduction}
-Text classification is a common problem in the field of machine learning and Natural Language Processing (NLP). In this assignment, we were tasked to classify some posts on certain newsgroups.
+Text classification is a common problem in the field of machine learning and Natural Language Processing (NLP). In this assignment, we were tasked to classify some posts on several newsgroups.
 
+We were given stemmed texts from 5 newsgroups: \url{comp.graphics}, \url{comp.os.ms-windows.misc}, \url{comp.sys.ibm.pc.hardware}, \url{comp.sys.mac.hardware} and \url{comp.windows.x}. In our test set, we were given 1425 instances to classify, and 2935 training instances. Several scripts and programs were supplied to perform various tasks:
+\begin{description}
+	\item[fs.php and fe.php] These two PHP scripts help to extract the features from the texts using \textsc{TF-IDF} and $\chi^2$ feature selection methods.
+	\item[Formatting.exe] This program converts the \url{.txt} files created by the PHP scripts into \url{.arff} files which can be read by WEKA.
+\end{description}
+The end result are two \url{.arff} files that consist of features that correspond to normalised word frequencies. These are the feature vectors which the various classifiers used will be working with. In this report, we experiment with using 3 different types of classifcation algorithms: $k$-Nearest Neighbour, Naive Bayes, and SVMs. 
+
+Our approach involves training different classifiers using each of the algorithms using the same dataset. Eventually, we take the best performing classifier from each different algorithm, and use these classifiers together to hopefully reduce any kind of overfitting caused by any of the individual algorithms. After evaluating this classifier, we then use this to classify our test set.
+
+We make use of version 3.7.4 of WEKA for the tasks detailed in this report.
+
+\section{Selecting the Features}
+ Setting an overly high value for feature selection may result in feature vectors that are too specific to the training set, and eventually cause overfitting. For our first experiment, we select only the top 50 keywords for each class for our feature vector. This resulted in 203 keywords in total.
+
+Using the selected features, we extract the feature vectors from each of the newsgroup posts. Using this, we train three classifiers ($k$NN, Naive Bayes, SVM) using the default WEKA settings, and evaluate their performances before proceeding. We do this several times, with several different values of \url{fs_top_num}. Table \ref{table:fs} reports the different values we tried, and the F-Measure of the corresponding classifiers.
+\begin{table}
+\label{table:fs}
+\centering
+\begin{tabular}{|l|c| c c c |}
+\hline 
+	\url{fs_top_num} & Keywords/Features   & \textbf{Naive Bayes}& \textbf{SVM} & \textbf{IBk} \\
+\hline
+	50	& 203	& 0.738 & 0.77 	& 0.732 \\
+	100	& 428   & 0.74	& 0.801	& 0.758	\\
+	150 & 641	& 0.743 & 0.814 & 0.767 \\
+	200 & 857	& 0.74	& 0.822 & 0.774 \\
+\hline
+\end{tabular}
+\caption{Experiments with the number of features used.}
+\end{table}
+
+Increasing \url{fs_top_num} by 50 at each round of testing, we performed the experiment four times. We decided to use an \url{fs_top_num} value of 200 for our classifcation task, as larger feature vectors may cause classification to take long periods of time, making repeated testing difficult. In the following section we attempt to tune the performance of individual classifiers by adjusting the parameters for the different algorithms.
+
+
+
+\section{Tuning Performance of Individual Classifiers}
 \end{document}

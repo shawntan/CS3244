@@ -1,0 +1,80 @@
+
+Options: -K 100 
+
+IB1 instance-based classifier
+using 100 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0.03 seconds
+Time taken to test model on training data: 7.33 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        2289               77.9898 %
+Incorrectly Classified Instances       646               22.0102 %
+Kappa statistic                          0.7249
+Mean absolute error                      0.2379
+Root mean squared error                  0.3146
+Relative absolute error                 74.3373 %
+Root relative squared error             78.6454 %
+Coverage of cases (0.95 level)          99.8978 %
+Mean rel. region size (0.95 level)      94.1533 %
+Total Number of Instances             2935     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.853     0.061      0.777     0.853     0.813      0.954    0
+                 0.738     0.061      0.752     0.738     0.745      0.916    1
+                 0.786     0.094      0.678     0.786     0.728      0.918    2
+                 0.723     0.036      0.833     0.723     0.774      0.941    3
+                 0.799     0.023      0.896     0.799     0.845      0.967    4
+Weighted Avg.    0.78      0.055      0.787     0.78      0.781      0.939
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   <-- classified as
+ 498  32  23  15  16 |   a = 0
+  41 436  69  14  31 |   b = 1
+  26  47 463  48   5 |   c = 2
+  22  27 108 418   3 |   d = 3
+  54  38  20   7 474 |   e = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2218               75.5707 %
+Incorrectly Classified Instances       717               24.4293 %
+Kappa statistic                          0.6946
+Mean absolute error                      0.2459
+Root mean squared error                  0.3227
+Relative absolute error                 76.8427 %
+Root relative squared error             80.6697 %
+Coverage of cases (0.95 level)          99.8637 %
+Mean rel. region size (0.95 level)      95.2504 %
+Total Number of Instances             2935     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.817     0.066      0.754     0.817     0.784      0.944    0
+                 0.717     0.068      0.727     0.717     0.722      0.906    1
+                 0.774     0.106      0.648     0.774     0.705      0.904    2
+                 0.696     0.037      0.82      0.696     0.753      0.933    3
+                 0.774     0.028      0.874     0.774     0.821      0.959    4
+Weighted Avg.    0.756     0.061      0.765     0.756     0.757      0.929
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   <-- classified as
+ 477  42  27  16  22 |   a = 0
+  48 424  78  10  31 |   b = 1
+  26  49 456  53   5 |   c = 2
+  25  24 119 402   8 |   d = 3
+  57  44  24   9 459 |   e = 4
+

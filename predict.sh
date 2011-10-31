@@ -5,7 +5,7 @@ echo "$(grep -c "^\{" Formatting/test.arff) test.arff"
 cp 5Newsgroups/output/list_test.txt output
 wc -l 5Newsgroups/output/list_test.txt
 
-EXEC_STR="$J weka.classifiers.meta.Vote -t Formatting/train.arff -R MAJ" 
+EXEC_STR="$J weka.classifiers.meta.Vote -t Formatting/train.arff -R MAJ -d THEMODEL " 
 
 for raw in $MODELS;
 do

@@ -16,7 +16,7 @@ tests_length=${#tests[@]}
 for (( i=0; i<${tests_length}; i++ ));
 do
 	echo ${tests[i]}
-	$J weka.classifiers.${tests[i]} -t $TESTFILE -d models/${tests[i]//[[:space:]]} -x 10 > results/${tests[i]//[[:space:]]}
+	$J weka.classifiers.${tests[i]} -t $TESTFILE -d models/${tests[i]//[[:space:]]} -x 10 > results/${tests[i]//[[:space:]]} -i 
 	echo "Results for ${tests[i]//[[:space:]]}"
 	tail results/${tests[i]//[[:space:]]}
 done;

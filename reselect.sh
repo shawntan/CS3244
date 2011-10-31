@@ -5,6 +5,8 @@ php fs.php
 php fe.php
 cd $ORIG_DIR 
 cd Formatting
+rm *.txt *.arff
+cp ../5Newsgroups/output/{test,train}.txt .
 FEATURECOUNT=$(grep -c "^" ../5Newsgroups/output/all_keywords.txt)
 expect -c ' 
 spawn wine Formatting.exe
@@ -15,5 +17,5 @@ expect {
 exit
 '
 cd $ORIG_DIR
-
+wc -l 5Newsgroups/output/all_keywords.txt 
 
