@@ -1,0 +1,76 @@
+1425 test.arff
+1425 5Newsgroups/output/list_test.txt
+
+Options: -B weka.classifiers.bayes.NaiveBayes -P models/bayes.NaiveBayes -B weka.classifiers.bayes.NaiveBayes -P models/bayes.NaiveBayes-K -B weka.classifiers.functions.SMO -P models/functions.SMO -B weka.classifiers.lazy.IBk -P models/lazy.IBk -B weka.classifiers.lazy.IBk -P models/lazy.IBk-K10 -B weka.classifiers.lazy.IBk -P models/lazy.IBk-K100 -B weka.classifiers.lazy.IBk -P models/lazy.IBk-K5 -B weka.classifiers.lazy.IBk -P models/lazy.IBk-K50 
+
+Vote combines the probability distributions of these base learners:
+	weka.classifiers.bayes.NaiveBayes 
+	weka.classifiers.bayes.NaiveBayes 
+	weka.classifiers.functions.SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+	weka.classifiers.lazy.IBk -K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk -K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk -K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk -K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk -K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.bayes.NaiveBayes
+	weka.classifiers.bayes.NaiveBayes-K
+	weka.classifiers.functions.SMO-C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+	weka.classifiers.lazy.IBk-K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk-K 10 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk-K 100 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk-K 5 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+	weka.classifiers.lazy.IBk-K 50 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+using the 'Average of Probabilities' combination rule 
+
+
+Time taken to build model: 5.9 seconds
+Time taken to test model on training data: 58.38 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        2903               99.0447 %
+Incorrectly Classified Instances        28                0.9553 %
+Kappa statistic                          0.9881
+Mean absolute error                      0.0918
+Root mean squared error                  0.1469
+Relative absolute error                 28.6743 %
+Root relative squared error             36.7367 %
+Coverage of cases (0.95 level)         100      %
+Mean rel. region size (0.95 level)      61.8287 %
+Total Number of Instances             2931     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   <-- classified as
+ 579   2   0   2   0 |   a = 0
+   2 585   1   2   0 |   b = 1
+   0   5 579   4   0 |   c = 2
+   0   1   0 577   0 |   d = 3
+   5   3   0   1 583 |   e = 4
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2462               83.9986 %
+Incorrectly Classified Instances       469               16.0014 %
+Kappa statistic                          0.8   
+Mean absolute error                      0.1231
+Root mean squared error                  0.2184
+Relative absolute error                 38.4847 %
+Root relative squared error             54.6113 %
+Coverage of cases (0.95 level)         100      %
+Mean rel. region size (0.95 level)      62.2586 %
+Total Number of Instances             2931     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   <-- classified as
+ 505  23  18  15  22 |   a = 0
+  23 502  27  18  20 |   b = 1
+  26  41 462  46  13 |   c = 2
+   7  17  49 497   8 |   d = 3
+  23  48  12  13 496 |   e = 4
+

@@ -1,0 +1,230 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+
+</title><link href="../../App_Themes/Default-0/lms-css.css" type="text/css" rel="stylesheet" /><link href="../../App_Themes/Default-0/topmenu.css" type="text/css" rel="stylesheet" /></head>
+<body>
+    <table id="tblGroups" cellpadding="4" border="0" style="width:100%;">
+	<tr>
+		<td align="left" valign="top" colspan="2" style="border-width:1px;border-style:solid;"><b>CS3244</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2" style="border-width:1px;border-style:solid;"><b>MACHINE LEARNING</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 01 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">ANTTI OLAVI KANGASRAASIO<br>A0089842N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 02 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">BOK ZHUANG QIANG<br>U090059R</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 03 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">CHAN HAN LIN<br>U097053H</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 04 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">CHENG LULU<br>U086971R</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 05 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">DANG CAO KHOA<br>U087212J</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 06 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">DANNIS MUHAMMAD MANGAN<br>A0089482N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 07 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">DING MINGZHE<br>A0077989X</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 08 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">ERIC NG JUN FENG<br>U087179U</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 09 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">EVA IRENE ANDERSSON<br>A0090432N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 10 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">FAN QI<br>U087265Y</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 11 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">GIDEON DANIEL PHILIPP ALFRED ASCHWANDEN<br>A0092278W</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 12 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">GOH KHOON HIANG<br>U087097N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 13 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">HAY ZHI YI JONATHAN<br>U070363R</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 14 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">IVAN JOHN MERCADO CLEMENT<br>U093544L</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 15 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">JIN YIPING<br>U097006L</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 16 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">KATHRYN IRENE CUNNINGHAM<br>A0090324N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 17 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">LE VU<br>U096951X</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 18 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">LEE JIA WEI SHAUN<br>U096797E</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 19 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">LI YAN KIT<br>A0089770N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 20 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">PENG CHHAY UNG<br>A0090162N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 21 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">PHUNG NGOC THANH PHUONG<br>U087037M</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 22 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">SESHASAYEE VIJAYAN<br>A0090270N</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 23 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">SHAILENDRA KHEMKA<br>U096986U</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 24 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">SIOW BOON LIN EUGENE<br>U086946L</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 25 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">TAN JING SHAN, SHAWN<br>U096883L</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 26 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">TOR ERIK HARALD NILSSON OHRN<br>A0089474M</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 27 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">TRAN BINH NGOC<br>U087218A</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 28 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">TRAN THANH PHU<br>U096961U</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 29 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">WANG SHA<br>U087244W</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 30 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">WINT MON OO<br>U087116H</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 31 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">WU WEILUN<br>A0077860W</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 32 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">XU XIAOJIANG<br>U087263B</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 33 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">ZHANG KUN<br>A0089475L</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 34 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">ZHANG QIONG<br>U093412B</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"><b>Assignment 2 Group 35 : 1 students</b></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;">ZHANG XIAOYU<br>U093397E</td><td align="left" valign="top" colspan="1" style="border-width:1px;border-style:solid;"></td>
+	</tr><tr>
+		<td align="left" valign="top" colspan="2"></td>
+	</tr>
+</table>
+</body>
+</html>

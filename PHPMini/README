@@ -1,0 +1,14 @@
+This is a mini copy of PHP 4.2.12 for command line use.
+PHP is GNU/GPL freeware, available via http://www.php.net.
+
+Installation: 
+* Copy php.exe and php.ini into your windows directory (e.g. c:\windows, c:\winnt)
+* Copy php4ts.dll and php4ts.lib into your windows system directory (e.g. c:\windows\system, c:\winnt\system32).
+
+Usage:
+Under command line, type
+>PHP <your script name>
+
+e.g.
+>PHP fs.php
+>PHP fe.php

@@ -1,0 +1,23 @@
+
+\title{CS3244 Machine Learning \\ Assignment 2}
+\author{Shawn Tan (U096883L)}
+\date{}
+\documentclass[12pt]{article}
+	\addtolength{\oddsidemargin}{-.875in}
+	\addtolength{\evensidemargin}{-.875in}
+	\addtolength{\textwidth}{1.5in}
+	\addtolength{\topmargin}{-1in}
+	\addtolength{\textheight}{2in}
+\usepackage[compact]{titlesec}
+\usepackage{amsmath}
+
+%\titlespacing{\section}{0pt}{*0}{*0}
+%\titlespacing{\subsection}{0pt}{*0}{*0}
+%\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+Text classification is a common problem in the field of machine learning 
+
+\end{document}
