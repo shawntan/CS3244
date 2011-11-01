@@ -10,7 +10,7 @@ tests=(
 #	'lazy.IBk -K 20'
 #	'lazy.IBk -K 30'
 #	'lazy.IBk -K 50'
-	'lazy.IBk -K 100 -X'
+#	'lazy.IBk -K 20 -W 3000'
 #	'lazy.IBk -K 100'
 #	'lazy.IBk -K 10 -I'
 #	'lazy.IBk -K 20 -I'

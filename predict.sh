@@ -1,11 +1,11 @@
 #!/bin/bash
 J="java -cp /usr/share/java/weka/weka.jar"
-MODELS=models/*
+MODELS=goodshit/*
 echo "$(grep -c "^\{" Formatting/test.arff) test.arff"
 cp 5Newsgroups/output/list_test.txt output
 wc -l 5Newsgroups/output/list_test.txt
 
-EXEC_STR="$J weka.classifiers.meta.Vote -t Formatting/train.arff -R MAJ -d THEMODEL " 
+EXEC_STR="$J weka.classifiers.meta.Vote -t Formatting/train.arff -R MAJ -d THEMODEL -i -x 10" 
 
 for raw in $MODELS;
 do

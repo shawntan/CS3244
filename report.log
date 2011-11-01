@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2011.10.30)  1 NOV 2011 14:21
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2011.10.30)  1 NOV 2011 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -153,26 +153,26 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 l.95 ...ection{$k$-Nearest Neighbours (\url{IBk})}
                                                   
 ? 
-[3] (./report.aux) ) 
+[3] [4] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 1182 strings out of 493633
- 13440 string characters out of 3148831
+ 1183 strings out of 493633
+ 13453 string characters out of 3148831
  73341 words of memory out of 3000000
- 4528 multiletter control sequences out of 15000+200000
+ 4529 multiletter control sequences out of 15000+200000
  10572 words of font info for 39 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 27i,9n,31p,542b,333s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
-2.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (3 pages, 92665 bytes).
+ 27i,9n,31p,585b,333s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></u
+sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on report.pdf (4 pages, 96092 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 49 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -91,7 +91,7 @@ Evaluating kernels of exponent 0.5, 1, 1.5, 2, and 3, we saw that the best perfo
 
 We attempt the same classification task with the RBF kernel, but obtained results poorer than the default settings for the SVM. Again, this suggests that the RBF kernel is not a good fit for the data.
 
-Eventually, we decided to use \url{SVM0.5} for our SVM classifier. Our experimental results are shown in Table \ref{table:svm}. These are listed as the weighted averages of the different shown values.
+Eventually, we decided to use \url{SVM1.5} for our SVM classifier. Our experimental results are shown in Table \ref{table:svm}. These are listed as the weighted averages of the different shown values.
 \subsection{$k$-Nearest Neighbours (\url{IBk})}
 The default setting for IBk on WEKA has the $k=1$. This results in every new instance being classified the same a the first nearest neighbour it sees. We experiment with different values of $k$ to find a good classifier.
 
@@ -115,6 +115,49 @@ Label & $k$ &	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
 \caption{Experiments with the number of features used.}
 \label{table:knn}
 \end{table}
+
+Using the \url{-X} function to choose $k$ did not seem to contribute much to the results of the classifier. One noticeable characteristic of this classifier was that it was much faster than the training times of the SVM. However, the results of the classifiers tend to be poorer than that of the SVM as well. We also tried several iterations with the \url{-I} and \url{-F} parameters, which alter the weighting function so that the classifier behaves slightly differently, but these did not improve the performance of the overall classifier much.
+
+It is worth noting that the IBk classifiers generally have nearly 0\% errors when run on their own training set. This is because the points to be classified fall directly on themselves, giving the same results. As such, testing the IBk classifier on the same set of data as the training set is unproductive.
+
+
+\section{Combining the Classifiers}
+From each type of classifier, we pick the two best. We then combine the 5 resulting classifiers into one using the \url{weka.classifiers.meta.Vote} classifier. We choose to combine them by majority vote, which means that the classification will be determined by the most common classification among the 5 classifiers.
+
+Our chosen classifiers are:
+\begin{enumerate}
+	\item \url{NB}
+	\item \url{SVM1.0}
+	\item \url{SVM4.0-L}
+	\item \url{IB10-I}
+	\item \url{IB20-I}
+\end{enumerate}
+In our selection of the classifiers we have to take into consideration the performance of each of the included classifier. Having multiple classifiers prone to errors would result in a correspondingly error prone combined classifier. The benefit of combining them, however, is due to the fact that the different algorithms have different strengths and weaknesses, and giving only the output which majority of the classifiers agree on is likely to improve the overall performance. The error made by one classifier could then be corrected by the other classifiers.
+
+Combining the classifiers, we run the training set against the newly formed classifier. The obtained results are in Table \ref{table:combi}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l | c c c c c|}
+\hline
+Class &	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
+\hline
+
+\hline
+0             &     0.998   &   0   &        0.998   &   0.998   &   0.998  \\  
+1             &     0.998   &   0   &        0.998   &   0.998   &   0.998  \\ 
+2             &     1       &   0   &        1       &   1       &   1      \\ 
+3             &     1       &   0   &        1       &   1       &   1      \\  
+4             &     1       &   0   &        1       &   1       &   1      \\  
+Weighted Avg. &     0.999   &   0   &        0.999   &   0.999   &   0.999  \\ 
+\hline
+\end{tabular}
+\caption{Class breakdown of the performance of the combined classifier.}
+\label{table:combi}
+\end{table}
+
+The combined classifier seems to perform exceedingly well on the training set. However, we must keep in mind that the classifier may be over fitted for the training set. Despite this, we attempt to use the classifier to make a prediction on the training set. 
+
 \end{document}
 
 
