@@ -4,21 +4,22 @@ TESTFILE="Formatting/train.arff"
 KERNEL=""
 #$J weka.classifiers.bayes.NaiveBayes	-x 10	-t $TESTFILE -d models/NaiveBayes.default > results/NaiveBayes.default
 tests=(
-#	'lazy.IBk'
-#	'lazy.IBk -K 5'
-#	'lazy.IBk -K 10 -I'
-#	'lazy.IBk -K 20 -I'
-#	'lazy.IBk -K 10 -F'
-#	'lazy.IBk -K 20 -F'
-#	'lazy.IBk -K 30'
-#	'lazy.IBk -K 50'
-#	'lazy.IBk -K 100'
+	'lazy.IBk'
+	'lazy.IBk -K 5'
+	'lazy.IBk -K 10'
+	'lazy.IBk -K 30'
+	'lazy.IBk -K 50'
+	'lazy.IBk -K 100'
+	'lazy.IBk -K 10 -I'
+	'lazy.IBk -K 20 -I'
+	'lazy.IBk -K 10 -F'
+	'lazy.IBk -K 20 -F'
 	'functions.SMO'
-#	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 1.5"'
-#	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 2.0"'
-#	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 3.0"'
-#	'bayes.NaiveBayes'
-#	'bayes.NaiveBayes -K ' 
+	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 1.5"'
+	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 2.0"'
+	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 3.0"'
+	'bayes.NaiveBayes'
+	'bayes.NaiveBayes -K ' 
 )
 tests_length=${#tests[@]}
 for (( i=0; i<${tests_length}; i++ ));

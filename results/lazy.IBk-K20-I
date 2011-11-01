@@ -6,7 +6,7 @@ using 20 inverse-distance-weighted nearest neighbour(s) for classification
 
 
 Time taken to build model: 0.03 seconds
-Time taken to test model on training data: 6.35 seconds
+Time taken to test model on training data: 6.41 seconds
 
 === Error on training data ===
 

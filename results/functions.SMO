@@ -5542,8 +5542,8 @@ Number of kernel evaluations: 293439 (87.493% cached)
 
 
 
-Time taken to build model: 2.7 seconds
-Time taken to test model on training data: 0.5 seconds
+Time taken to build model: 2.78 seconds
+Time taken to test model on training data: 0.59 seconds
 
 === Error on training data ===
 

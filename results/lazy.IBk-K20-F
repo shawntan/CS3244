@@ -6,7 +6,7 @@ using 20 similarity-weighted nearest neighbour(s) for classification
 
 
 Time taken to build model: 0.03 seconds
-Time taken to test model on training data: 6.58 seconds
+Time taken to test model on training data: 6.42 seconds
 
 === Error on training data ===
 
