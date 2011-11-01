@@ -1,20 +1,21 @@
 
-\title{CS3244 Machine Learning \\ Assignment 2}
+\title{CS3244 Machine Learning \\ Assignment 2: Text Classification with WEKA}
 \author{Shawn Tan (U096883L)}
 \date{}
 \documentclass[12pt]{article}
 	\addtolength{\oddsidemargin}{-0.7in}
 	\addtolength{\evensidemargin}{-0.7in}
 	\addtolength{\textwidth}{1.2in}
-	\addtolength{\topmargin}{-0.5in}
+	\addtolength{\topmargin}{-0.75in}
 	\addtolength{\textheight}{1.5in}
 \usepackage[compact]{titlesec}
 \usepackage{amsmath}
-\usepackage{url}
+\usepackage[obeyspaces]{url}
 %\titlespacing{\section}{0pt}{*0}{*0}
 %\titlespacing{\subsection}{0pt}{*0}{*0}
 %\titlespacing{\subsubsection}{0pt}{*0}{*0}
 
+\linespread{1.5}
 \begin{document}
 \maketitle
 \section{Introduction}
@@ -27,7 +28,7 @@ We were given stemmed texts from 5 newsgroups: \url{comp.graphics}, \url{comp.os
 \end{description}
 The end result are two \url{.arff} files that consist of features that correspond to normalised word frequencies. These are the feature vectors which the various classifiers used will be working with. In this report, we experiment with using 3 different types of classifcation algorithms: $k$-Nearest Neighbour, Naive Bayes, and SVMs. 
 
-Our approach involves training different classifiers using each of the algorithms using the same dataset. Eventually, we take the best performing classifier from each different algorithm, and use these classifiers together to hopefully reduce any kind of overfitting caused by any of the individual algorithms. After evaluating this classifier, we then use this to classify our test set.
+Our approach involves training different classifiers using each of the algorithms using the same dataset. Eventually, we take the best performing classifiers from each different algorithm, and use these classifiers together to hopefully reduce any kind of overfitting caused by any of the individual algorithms. After evaluating this classifier, we then use this to classify our test set.
 
 We make use of version 3.7.4 of WEKA for the tasks detailed in this report.
 
@@ -36,6 +37,7 @@ We make use of version 3.7.4 of WEKA for the tasks detailed in this report.
 
 Using the selected features, we extract the feature vectors from each of the newsgroup posts. Using this, we train three classifiers ($k$NN, Naive Bayes, SVM) using the default WEKA settings, and evaluate their performances before proceeding. We do this several times, with several different values of \url{fs_top_num}. Table \ref{table:fs} reports the different values we tried, and the weighted F-measure of the corresponding classifiers.
 \begin{table}[h]
+\linespread{1}
 \label{table:fs}
 \centering
 \begin{tabular}{|l|c| c c c |}
@@ -59,9 +61,12 @@ Increasing \url{fs_top_num} by 50 at each round of testing, we performed the exp
 
 \section{Tuning Performance of Individual Classifiers}
 In the following section we attempt to tune the performance of individual classifiers by adjusting the parameters for the different algorithms. For each algorithm, we evaluate the classifiers based on their performance on the training set and see how the classifiers can be improved.
-\subsection{Naive Bayes (\url{NaiveBayes})}
-The WEKA implementation of the Naive Bayes classifier does not allow for much tweaking of parameters. The default (using WEKA's settings) classifier has an  F-measure of 0.74 on the training set. It is worth noting that the F-measure on class 4 was 0.809 and has a true positive rate of 0.81 for class 3 , as this may be useful in our attempt to combine the classifiers later on.
 
+For the following experiments with the classifiers, we use a 10-fold cross validation in all our evaluations.
+\subsection{Naive Bayes (\url{NaiveBayes})}
+The Naive Bayes classifier does not allow for much tweaking of parameters. The default (using WEKA's settings) classifier has an  F-measure of 0.74 on the training set. It is worth noting that the F-measure on class 4 was 0.809 and has a true positive rate of 0.81 for class 3 , as this may be useful in our attempt to combine the classifiers later on.
+
+Also, observing the F-measures for the Naive Bayesian classifier over different numbers of features, we observe that the performance of the classifier does not increase much after 0.74.
 \subsection{Support Vector Machines (\url{SMO})}
 By default, WEKA's SMO algorithm learns a classifier with a linear decision boundary. By setting the \url{-K} parameter, we can change this to higher exponents. This is effectively mapping the original representation of data points to a different feature space. This is expected to give us better results, since many real-world problems are unlikely to be linearly separated.
 
@@ -69,12 +74,13 @@ The original weighted F-measure for the SVM is 0.822. Again, we see that the F-m
 
 We ran the training set against the SMO algorithm with the \url{PolyKernel} at different exponents and evaluated the results.
 \begin{table}[h]
+\linespread{1}
 \centering
 \begin{tabular}{|l |l|c c c c c|}
 \hline
 Label & Exponent	&	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
 \hline
-\url{SVM} & 1	&		0.821 &    0.045 &     0.823   &   0.821   &   0.822  \\
+\url{SVM} 	 & 1	&		0.821 &    0.045 &     0.823   &   0.821   &   0.822  \\
 \url{SVM0.5} & 0.5 &	0.748 &    0.063 &     0.75    &   0.748   &   0.748  \\   
 \url{SVM1.5} & 1.5	&	0.844 &    0.039 &     0.845   &   0.844   &   0.844  \\
 \url{SVM2.0} & 2.0	&	0.838 &    0.041 &     0.839   &   0.838   &   0.838  \\
@@ -83,15 +89,36 @@ Label & Exponent	&	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
 
 \hline
 \end{tabular}
-\caption{Experiments with the number of features used.}
+\caption{Experiments with different exponent values in \url{PolyKernel}.}
 \label{table:svm}
 \end{table}
 
-Evaluating kernels of exponent 0.5, 1, 1.5, 2, and 3, we saw that the best performing SVM was when \url{-E} was set at 1.5, which performed slightly better than the default settings. This setting brings up the F-measure over all classes to over 0.8, which hopefully, gives us better performance. The best reported F-measure was for class 3 at 0.869. Higher orders of exponents seem to result in poorer results, suggesting that the data does not fit well to functions of orders 2 and above. %try with 0.5
+Evaluating kernels of exponent 0.5, 1, 1.5, 2, and 3, we saw that the best performing SVM was when \url{-E} was set at 1.5, which performed slightly better than the default settings. This setting brings up the F-measure over all classes to over 0.8, which hopefully, gives us better performance. Beyond 1.5, the values of the weighted F-measures seem to decrease. The best reported F-measure was for class 3 at 0.869. Higher orders of exponents seem to result in poorer results, suggesting that the data does not fit well to functions of orders 2 and above. %try with 0.5
 
 We attempt the same classification task with the RBF kernel, but obtained results poorer than the default settings for the SVM. Again, this suggests that the RBF kernel is not a good fit for the data.
 
-Eventually, we decided to use \url{SVM1.5} for our SVM classifier. Our experimental results are shown in Table \ref{table:svm}. These are listed as the weighted averages of the different shown values.
+There was also a \url{-L} option for the kernel in order to allow the SVM to model the function using smaller orders of the variables. We again ran the algorithm on the same set of data, except now with the \url{-L} option turned on.
+\begin{table}[h]
+\linespread{1}
+\centering
+\begin{tabular}{|l |l|c c c c c|}
+\hline
+Label & Exponent	&	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
+\hline
+\url{SVM0.5-L} & 0.5 	& 0.828  &    0.043   &    0.831  &    0.828  &    0.829  \\ 
+\url{SVM1.5-L} & 1.5	& 0.83   &    0.043   &    0.831  &    0.83   &    0.83   \\
+\url{SVM2.0-L} & 2.0	& 0.836  &    0.041   &    0.836  &    0.836  &    0.836  \\
+\url{SVM3.0-L} & 3.0	& 0.843  &    0.039   &    0.843  &    0.843  &    0.843  \\
+\url{SVM4.0-L} & 4.0	& 0.847  &    0.038   &    0.848  &    0.847  &    0.847  \\
+\hline
+\end{tabular}
+\caption{Experiments with different exponent values in \url{PolyKernel} using \url{-L} option.}
+\label{table:svm-l}
+\end{table}
+
+Observing that there was a gradual upward trend in this case, we tried another iteration of the experiment using \url{-L -E 4.0}. This resulted in a classifier that yielded an average F-measure of 0.847
+
+Eventually, we decided to use \url{SVM1.5} and \url{SVM4.0-L} for our SVM classifiers. Our experimental results are shown in Table \ref{table:svm}. These are listed as the weighted averages of the different shown values.
 \subsection{$k$-Nearest Neighbours (\url{IBk})}
 The default setting for IBk on WEKA has the $k=1$. This results in every new instance being classified the same a the first nearest neighbour it sees. We experiment with different values of $k$ to find a good classifier.
 
@@ -99,6 +126,7 @@ The classifier trained with the default settings gave an F-measure of 0.774, and
 
 We experiment with different values of $k$, evaluating the classifier with different $k$ values.
 \begin{table}[h]
+\linespread{1}
 \centering
 \begin{tabular}{|l |l|c c c c c|}
 \hline
@@ -116,13 +144,37 @@ Label & $k$ &	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
 \label{table:knn}
 \end{table}
 
-Using the \url{-X} function to choose $k$ did not seem to contribute much to the results of the classifier. One noticeable characteristic of this classifier was that it was much faster than the training times of the SVM. However, the results of the classifiers tend to be poorer than that of the SVM as well. We also tried several iterations with the \url{-I} and \url{-F} parameters, which alter the weighting function so that the classifier behaves slightly differently, but these did not improve the performance of the overall classifier much.
+Using the \url{-X} function to choose $k$ did not seem to contribute much to the results of the classifier. One noticeable characteristic of this classifier was that it was much faster than the training times of the SVM. However, the results of the classifiers tend to be poorer than that of the SVM as well. 
 
-It is worth noting that the IBk classifiers generally have nearly 0\% errors when run on their own training set. This is because the points to be classified fall directly on themselves, giving the same results. As such, testing the IBk classifier on the same set of data as the training set is unproductive.
+Weighing the distances by its inverse and similarities using the \url{-I} and \url{-F} options improve the classifier's performance slightly. We turn on the options using the $k=10$ and $20$.
+\begin{table}[h]
+\linespread{1}
+\centering
+\begin{tabular}{|l |l|c c c c c|}
+\hline
+Label & $k$ &	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
+\hline
+\url{IB10-F} & 10  &	0.783  &	   0.054  &	    0.786  &	   0.783  &	   0.783\\
+\url{IB20-F} & 20 &		0.775  &	   0.056  &	    0.78   &	   0.775  &	   0.776\\
+\url{IB10-I} & 10 &		0.788  &	   0.053  &	    0.791  &	   0.788  &	   0.789\\ 
+\url{IB20-I} & 20 &		0.787  &	   0.053  &	    0.792  &	   0.787  &	   0.788\\ 
 
+\hline
+\end{tabular}
+\caption{Experiments with the number of features used.}
+\label{table:knn-l}
+\end{table}
+
+Looking at the results in Table \ref{table:knn-l}, we find that the performance of classifiers using the \url{-I} option generally do better. This may suggest that small differences in the distance between data points make a big difference for this classification problem. The fact that we see about a 2\% improvement over the previous values also suggest that there are numerous cases in which there are equal numbers of the different classes in the $k$ nearest data points. 
+
+It should be noted that the IBk classifiers generally have nearly 0\% errors when run on their own training set. This is because the points to be classified fall directly on themselves, giving the same results. As such, testing the IBk classifier on the same set of data as the training set is unproductive.
+
+\subsection{Conclusion}
+In general, all our selected classifiers perform at over 0.75 for their F-measure, and above 75\% for their average true positive rates. In comparison, a random classifier would average at a 20\% rate for accuracy. In the case for our best performing classifier, \url{SVM4.0-L}, our accuracy is at 84\%. This is also comparable with the textbook's example from Joachims %Joachims1996
+, which has an accuracy of 89\%.
 
 \section{Combining the Classifiers}
-From each type of classifier, we pick the two best. We then combine the 5 resulting classifiers into one using the \url{weka.classifiers.meta.Vote} classifier. We choose to combine them by majority vote, which means that the classification will be determined by the most common classification among the 5 classifiers.
+From each type of classifier, we pick the two best performing. Since theres only one instance of the Naive Bayes classifier, we only use one. We then combine the 5 resulting classifiers into one using the \url{weka.classifiers.meta.Vote} classifier. We choose to combine them by majority vote, which means that the classification will be determined by the most common classification among the 5 classifiers.
 
 Our chosen classifiers are:
 \begin{enumerate}
@@ -137,6 +189,7 @@ In our selection of the classifiers we have to take into consideration the perfo
 Combining the classifiers, we run the training set against the newly formed classifier. The obtained results are in Table \ref{table:combi}.
 
 \begin{table}[h]
+\linespread{0.75}
 \centering
 \begin{tabular}{|l | c c c c c|}
 \hline
@@ -156,8 +209,11 @@ Weighted Avg. &     0.999   &   0   &        0.999   &   0.999   &   0.999  \\
 \label{table:combi}
 \end{table}
 
-The 
+The combined classifier seems to perform exceedingly well on the training set. However, we must keep in mind that the classifier may be over fitted for the training set. Despite this, we attempt to use the classifier to make a prediction on the training set. 
 
+Using the output and manually (and randomly) checking the classified instances, we found that the predicted values were fairly accurate. Some of the examples for which the classifier were not confident, we found that the posts were generally short, and it was difficult to determine its category from the content, even if done by hand. 
+
+\section{Conclusion}
 
 \end{document}
 
