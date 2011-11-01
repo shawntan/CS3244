@@ -34,8 +34,8 @@ We make use of version 3.7.4 of WEKA for the tasks detailed in this report.
 \section{Selecting the Features}
  Setting an overly high value for feature selection may result in feature vectors that are too specific to the training set, and eventually cause overfitting. For our first experiment, we select only the top 50 keywords for each class for our feature vector. This resulted in 203 keywords in total.
 
-Using the selected features, we extract the feature vectors from each of the newsgroup posts. Using this, we train three classifiers ($k$NN, Naive Bayes, SVM) using the default WEKA settings, and evaluate their performances before proceeding. We do this several times, with several different values of \url{fs_top_num}. Table \ref{table:fs} reports the different values we tried, and the F-Measure of the corresponding classifiers.
-\begin{table}
+Using the selected features, we extract the feature vectors from each of the newsgroup posts. Using this, we train three classifiers ($k$NN, Naive Bayes, SVM) using the default WEKA settings, and evaluate their performances before proceeding. We do this several times, with several different values of \url{fs_top_num}. Table \ref{table:fs} reports the different values we tried, and the weighted F-measure of the corresponding classifiers.
+\begin{table}[h]
 \label{table:fs}
 \centering
 \begin{tabular}{|l|c| c c c |}
@@ -51,9 +51,72 @@ Using the selected features, we extract the feature vectors from each of the new
 \caption{Experiments with the number of features used.}
 \end{table}
 
-Increasing \url{fs_top_num} by 50 at each round of testing, we performed the experiment four times. We decided to use an \url{fs_top_num} value of 200 for our classifcation task, as larger feature vectors may cause classification to take long periods of time, making repeated testing difficult. In the following section we attempt to tune the performance of individual classifiers by adjusting the parameters for the different algorithms.
+Increasing \url{fs_top_num} by 50 at each round of testing, we performed the experiment four times. We decided to use an \url{fs_top_num} value of 200 for our classifcation task, as larger feature vectors may cause classification to take long periods of time, making repeated testing difficult. 	
+	
+	
 
 
 
 \section{Tuning Performance of Individual Classifiers}
+In the following section we attempt to tune the performance of individual classifiers by adjusting the parameters for the different algorithms. For each algorithm, we evaluate the classifiers based on their performance on the training set and see how the classifiers can be improved.
+\subsection{Naive Bayes (\url{NaiveBayes})}
+The WEKA implementation of the Naive Bayes classifier does not allow for much tweaking of parameters. The default (using WEKA's settings) classifier has an  F-measure of 0.74 on the training set. It is worth noting that the F-measure on class 4 was 0.809 and has a true positive rate of 0.81 for class 3 , as this may be useful in our attempt to combine the classifiers later on.
+
+\subsection{Support Vector Machines (\url{SMO})}
+By default, WEKA's SMO algorithm learns a classifier with a linear decision boundary. By setting the \url{-K} parameter, we can change this to higher exponents. This is effectively mapping the original representation of data points to a different feature space. This is expected to give us better results, since many real-world problems are unlikely to be linearly separated.
+
+The original weighted F-measure for the SVM is 0.822. Again, we see that the F-measure for class 4 is the highest, but its true positive rate for class 0 documents is at 0.86.
+
+We ran the training set against the SMO algorithm with the \url{PolyKernel} at different exponents and evaluated the results.
+\begin{table}[h]
+\centering
+\begin{tabular}{|l |l|c c c c c|}
+\hline
+Label & Exponent	&	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
+\hline
+\url{SVM} & 1	&		0.821 &    0.045 &     0.823   &   0.821   &   0.822  \\
+\url{SVM0.5} & 0.5 &	0.748 &    0.063 &     0.75    &   0.748   &   0.748  \\   
+\url{SVM1.5} & 1.5	&	0.844 &    0.039 &     0.845   &   0.844   &   0.844  \\
+\url{SVM2.0} & 2.0	&	0.838 &    0.041 &     0.839   &   0.838   &   0.838  \\
+\url{SVM3.0} & 3.0	&	0.831 &    0.042 &     0.833   &   0.831   &   0.832  \\
+\url{SVMRBF} & $-$	&	0.751 &    0.063 &     0.787   &   0.751   &   0.749  \\
+
+\hline
+\end{tabular}
+\caption{Experiments with the number of features used.}
+\label{table:svm}
+\end{table}
+
+Evaluating kernels of exponent 0.5, 1, 1.5, 2, and 3, we saw that the best performing SVM was when \url{-E} was set at 1.5, which performed slightly better than the default settings. This setting brings up the F-measure over all classes to over 0.8, which hopefully, gives us better performance. The best reported F-measure was for class 3 at 0.869. Higher orders of exponents seem to result in poorer results, suggesting that the data does not fit well to functions of orders 2 and above. %try with 0.5
+
+We attempt the same classification task with the RBF kernel, but obtained results poorer than the default settings for the SVM. Again, this suggests that the RBF kernel is not a good fit for the data.
+
+Eventually, we decided to use \url{SVM0.5} for our SVM classifier. Our experimental results are shown in Table \ref{table:svm}. These are listed as the weighted averages of the different shown values.
+\subsection{$k$-Nearest Neighbours (\url{IBk})}
+The default setting for IBk on WEKA has the $k=1$. This results in every new instance being classified the same a the first nearest neighbour it sees. We experiment with different values of $k$ to find a good classifier.
+
+The classifier trained with the default settings gave an F-measure of 0.774, and an F-measure of 0.805 on class 0 and 0.807 on class 4. From the performance of the other classifiers on this classification, this suggests that instances in classes 0 and 4 are more easily distinguishable from the rest of the dataset.
+
+We experiment with different values of $k$, evaluating the classifier with different $k$ values.
+\begin{table}[h]
+\centering
+\begin{tabular}{|l |l|c c c c c|}
+\hline
+Label & $k$ &	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
+\hline
+\url{IB1}	& 1		&0.774     0.056      0.775     0.774     0.774	  \\
+\url{IB5}	& 5 	&0.762     0.06       0.77      0.762     0.763	  \\   
+\url{IB10}  & 10	&0.768     0.058      0.775     0.768     0.768	  \\
+\url{IB20}	& 20	&0.769     0.058      0.776     0.769     0.77 	  \\
+\url{IB30}	& 30	&0.76      0.06       0.767     0.76      0.761	  \\
+
+\hline
+\end{tabular}
+\caption{Experiments with the number of features used.}
+\label{table:knn}
+\end{table}
 \end{document}
+
+
+
+
