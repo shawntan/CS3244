@@ -3,14 +3,16 @@
 \author{Shawn Tan (U096883L)}
 \date{}
 \documentclass[12pt]{article}
-	\addtolength{\oddsidemargin}{-0.7in}
-	\addtolength{\evensidemargin}{-0.7in}
+	\addtolength{\oddsidemargin}{-0.55in}
+	\addtolength{\evensidemargin}{-0.55in}
 	\addtolength{\textwidth}{1.2in}
 	\addtolength{\topmargin}{-0.75in}
-	\addtolength{\textheight}{1.5in}
+	\addtolength{\textheight}{1.2in}
 \usepackage[compact]{titlesec}
 \usepackage{amsmath}
 \usepackage[obeyspaces]{url}
+\usepackage{tikz}
+\usetikzlibrary{trees}
 %\titlespacing{\section}{0pt}{*0}{*0}
 %\titlespacing{\subsection}{0pt}{*0}{*0}
 %\titlespacing{\subsubsection}{0pt}{*0}{*0}
@@ -67,6 +69,21 @@ For the following experiments with the classifiers, we use a 10-fold cross valid
 The Naive Bayes classifier does not allow for much tweaking of parameters. The default (using WEKA's settings) classifier has an  F-measure of 0.74 on the training set. It is worth noting that the F-measure on class 4 was 0.809 and has a true positive rate of 0.81 for class 3 , as this may be useful in our attempt to combine the classifiers later on.
 
 Also, observing the F-measures for the Naive Bayesian classifier over different numbers of features, we observe that the performance of the classifier does not increase much after 0.74.
+\begin{table}[h]
+\linespread{1}
+\centering
+\begin{tabular}{|l |c c c c c|}
+\hline
+Label 		&	TP Rate & FP Rate & Precision & Recall  & F-Measure	 \\
+\hline		
+\url{NB} 	& 0.739 &    0.065   &   0.75 &     0.739   &  0.74 \\
+\hline
+\end{tabular}
+\caption{Experiments with different exponent values in \url{PolyKernel}.}
+\label{table:nb}
+\end{table}
+
+
 \subsection{Support Vector Machines (\url{SMO})}
 By default, WEKA's SMO algorithm learns a classifier with a linear decision boundary. By setting the \url{-K} parameter, we can change this to higher exponents. This is effectively mapping the original representation of data points to a different feature space. This is expected to give us better results, since many real-world problems are unlikely to be linearly separated.
 
@@ -184,6 +201,48 @@ Our chosen classifiers are:
 	\item \url{IB10-I}
 	\item \url{IB20-I}
 \end{enumerate}
+\begin{figure}
+\centering
+\usetikzlibrary{shapes,arrows}
+\tikzstyle{block} = [draw, fill=blue!20, rectangle, 
+    minimum height=3em, minimum width=6em]
+\tikzstyle{split} = [draw, fill=blue!20, circle, node distance=2cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+% The block diagram code is probably more verbose than necessary
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    % We start by placing the blocks
+    \node [input, name=input] {Instance};
+    \node [split, right of=input, node distance=4cm] (split) {};
+    \node [block, right of=split, node distance=4cm] (svm) {\url{SVM1.5}};
+	\node [block, above of=svm] (svm-l) {\url{SVM4.0-L}};
+	\node [block, above of=svm-l] (nb) {\url{NB}};
+	\node [block, below of=svm] (ibk10) {\url{IB10-I}};
+	\node [block, below of=ibk10] (ibk20) {\url{IB20-I}};
+	\node [block, right of=svm, node distance=4cm] (maj) {\url{Vote} Majority};
+	\node [output, right of=maj, node distance=4cm] (out) {};
+    % We draw an edge between the controller and system block to 
+    % calculate the coordinate u. We need it to place the measurement block. 
+
+    % Once the nodes are placed, connecting them is easy. 
+    \draw [draw,->] (input) -- node {instance} (split);
+	\draw [->] (split) -- node {} (svm)		;
+	\draw [->] (split) |- node {} (svm-l)	;
+	\draw [->] (split) |- node {} (ibk10)	;
+	\draw [->] (split) |- node {} (ibk20)	;
+	\draw [->] (split) |- node {} (nb)		;
+	\draw [->] (svm)	-- node {} (maj);
+    \draw [->] (svm-l)	-| node {} (maj);
+    \draw [->] (ibk10)	-| node {} (maj);
+    \draw [->] (ibk20)	-| node {} (maj);
+    \draw [->] (nb)		-| node {vote} (maj);
+	\draw [->] (maj) -- node{classify} (out);
+\end{tikzpicture}
+\caption{Combining the classifiers.}
+\end{figure}
+
 In our selection of the classifiers we have to take into consideration the performance of each of the included classifier. Having multiple classifiers prone to errors would result in a correspondingly error prone combined classifier. The benefit of combining them, however, is due to the fact that the different algorithms have different strengths and weaknesses, and giving only the output which majority of the classifiers agree on is likely to improve the overall performance. The error made by one classifier could then be corrected by the other classifiers.
 
 Combining the classifiers, we run the training set against the newly formed classifier. The obtained results are in Table \ref{table:combi}.
@@ -208,15 +267,22 @@ Weighted Avg. &     0.999   &   0   &        0.999   &   0.999   &   0.999  \\
 \caption{Class breakdown of the performance of the combined classifier.}
 \label{table:combi}
 \end{table}
+Recall that our best individual classifier had an accuracy of 84\% while this combined classifier has an accuracy close to 100\%. This goes to show that there are certain instances for which some of the classifiers fail, and, conveniently, the majority of the other classifiers correctly classify the instance. This is in agreement with our original hypothesis that the different classifiers have different strengths in classifying the various different categories, and combining them with a majority vote gives an exceptionally accurate classification.
 
-The combined classifier seems to perform exceedingly well on the training set. However, we must keep in mind that the classifier may be over fitted for the training set. Despite this, we attempt to use the classifier to make a prediction on the training set. 
+We must keep in mind that there is a possibility that the classifier may be over fitted for the training set. However, the chances of this might be lower, due to the fact that there is cross-validation going on in between the different classifiers, giving us a much more accurate result. As such, we attempt to use the classifier to make a prediction on the training set. 
 
-Using the output and manually (and randomly) checking the classified instances, we found that the predicted values were fairly accurate. Some of the examples for which the classifier were not confident, we found that the posts were generally short, and it was difficult to determine its category from the content, even if done by hand. 
+Using the output and manually (and randomly) checking the classified instances, we found that the predicted values were fairly accurate. WEKA reported 17 instances for which classifier were not confident, and we found that the posts were generally short, or had few distinguishing features to determine its class. It was difficult to determine its category from the content, even if done by hand. 
+
 
 \section{Conclusion}
+Through our experiments, we see that each of the different strengths when it comes to the task of text classification. In general, SVMs do well at this task, while the Naive Bayes classifier was the worse of the three. This may have been due to the type of data presented were not discrete boolean values of whether the word was present, but frequency distributions. Analysing the data in WEKA, we see that it is difficult to have any form of classification of the data done using one attribute alone. This may have also contributed to the poor performance of the Naive Bayes classifier.
+
+The $k$-Nearest Neighbour instance-based learning algorithm was also not very effective at predicting the classes, although using inverse distance voting, we managed to get an F-measure of around 0.79. This this suggests some of the data points are close together, and penalising points just slightly further away from the newly introduced instance improves the performance.
+
+The SVM classifier, even with its default setting to learn a linear function to model the data, does relatively well compared to the other two algorithms. Through our experiments, we achieved the best performance when using the an exponent of 1.5, and 4.0 and lower. This exhibits some of the power of using SVMs, as simply by switching the kernel, huge gains in performance can be seen. This comes at the price of the time taken to compute the classifier. Also, our experimental data seems to suggest that the data is best approximated with a polynomial function of order 4, with perhaps larger coefficients for terms with order 1.5.
+
+Combining the learnt classifiers, we attain a near perfect classification of the training set. This suggests that despite a maximum accuracy of 84\%, the combined power of these classifiers can correct their own errors via cross-validation amongst the classifiers. It is unfortunate that WEKA toolkit does not provide analysis tools or more detailed output for its \url{meta.Vote} classifier, as it would be interesting to look at which instances a minority of the classifiers classify wrongly, but is out-voted by the rest to give a right answer. We suspect that this occurs relatively frequently with a good spread of different classifiers making mistakes, given the huge performance gain we are seeing.
+
+We are aware, however, that there is a danger of the individual classifiers overfitting the training set, but we believe that the exceedingly accurate performance by the meta-classifier is due to the cross-validation taking place between classifiers. Taking into account the meta-classifier's performance on the training set, together with the number of instances for which the meta-classifier is uncertain, we are confident with the predictions that have been made.
 
 \end{document}
-
-
-
-
