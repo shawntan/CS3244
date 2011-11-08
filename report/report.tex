@@ -3,11 +3,11 @@
 \author{Shawn Tan (U096883L)}
 \date{}
 \documentclass[12pt]{article}
-	\addtolength{\oddsidemargin}{-0.55in}
-	\addtolength{\evensidemargin}{-0.55in}
-	\addtolength{\textwidth}{1.2in}
+	\addtolength{\oddsidemargin}{-0.9in}
+	\addtolength{\evensidemargin}{-0.9in}
+	\addtolength{\textwidth}{1.7in}
 	\addtolength{\topmargin}{-0.75in}
-	\addtolength{\textheight}{1.2in}
+	\addtolength{\textheight}{1.1in}
 \usepackage[compact]{titlesec}
 \usepackage{amsmath}
 \usepackage[obeyspaces]{url}
@@ -15,9 +15,9 @@
 \usetikzlibrary{trees}
 %\titlespacing{\section}{0pt}{*0}{*0}
 %\titlespacing{\subsection}{0pt}{*0}{*0}
-%\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
 
-\linespread{1.5}
+\linespread{1.1}
 \begin{document}
 \maketitle
 \section{Introduction}
@@ -25,7 +25,7 @@ Text classification is a common problem in the field of machine learning and Nat
 
 We were given stemmed texts from 5 newsgroups: \url{comp.graphics}, \url{comp.os.ms-windows.misc}, \url{comp.sys.ibm.pc.hardware}, \url{comp.sys.mac.hardware} and \url{comp.windows.x}. In our test set, we were given 1425 instances to classify, and 2935 training instances. Several scripts and programs were supplied to perform various tasks:
 \begin{description}
-	\item[fs.php and fe.php] These two PHP scripts help to extract the features from the texts using \textsc{TF-IDF} and $\chi^2$ feature selection methods.
+	\item[fs.php and fe.php] These two PHP scripts help to extract the features from the texts using \textsc{TF-IDF} and $\chi^2$ as feature selection methods.
 	\item[Formatting.exe] This program converts the \url{.txt} files created by the PHP scripts into \url{.arff} files which can be read by WEKA.
 \end{description}
 The end result are two \url{.arff} files that consist of features that correspond to normalised word frequencies. These are the feature vectors which the various classifiers used will be working with. In this report, we experiment with using 3 different types of classifcation algorithms: $k$-Nearest Neighbour, Naive Bayes, and SVMs. 
@@ -61,7 +61,7 @@ Increasing \url{fs_top_num} by 50 at each round of testing, we performed the exp
 
 
 
-\section{Tuning Performance of Individual Classifiers}
+\section{Tuning the Performance of Individual Classifiers}
 In the following section we attempt to tune the performance of individual classifiers by adjusting the parameters for the different algorithms. For each algorithm, we evaluate the classifiers based on their performance on the training set and see how the classifiers can be improved.
 
 For the following experiments with the classifiers, we use a 10-fold cross validation in all our evaluations.
@@ -273,6 +273,7 @@ We must keep in mind that there is a possibility that the classifier may be over
 
 Using the output and manually (and randomly) checking the classified instances, we found that the predicted values were fairly accurate. WEKA reported 17 instances for which classifier were not confident, and we found that the posts were generally short, or had few distinguishing features to determine its class. It was difficult to determine its category from the content, even if done by hand. 
 
+The unsure instances in the test set can be found in Appendix \ref{unsure}.
 
 \section{Conclusion}
 Through our experiments, we see that each of the different strengths when it comes to the task of text classification. In general, SVMs do well at this task, while the Naive Bayes classifier was the worse of the three. This may have been due to the type of data presented were not discrete boolean values of whether the word was present, but frequency distributions. Analysing the data in WEKA, we see that it is difficult to have any form of classification of the data done using one attribute alone. This may have also contributed to the poor performance of the Naive Bayes classifier.
@@ -284,5 +285,14 @@ The SVM classifier, even with its default setting to learn a linear function to 
 Combining the learnt classifiers, we attain a near perfect classification of the training set. This suggests that despite a maximum accuracy of 84\%, the combined power of these classifiers can correct their own errors via cross-validation amongst the classifiers. It is unfortunate that WEKA toolkit does not provide analysis tools or more detailed output for its \url{meta.Vote} classifier, as it would be interesting to look at which instances a minority of the classifiers classify wrongly, but is out-voted by the rest to give a right answer. We suspect that this occurs relatively frequently with a good spread of different classifiers making mistakes, given the huge performance gain we are seeing.
 
 We are aware, however, that there is a danger of the individual classifiers overfitting the training set, but we believe that the exceedingly accurate performance by the meta-classifier is due to the cross-validation taking place between classifiers. Taking into account the meta-classifier's performance on the training set, together with the number of instances for which the meta-classifier is uncertain, we are confident with the predictions that have been made.
+
+\appendix
+\section{Resources}
+The various scripts used to run experiments and create this report can be found here: \\
+\url{https://github.com/shawntan/CS3244}
+\section{Uncertain Instances}\label{unsure}
+\linespread{0.25}
+\input{unsure_files}
+
 
 \end{document}

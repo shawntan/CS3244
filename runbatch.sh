@@ -12,22 +12,22 @@ tests=(
 #	'lazy.IBk -K 50'
 #	'lazy.IBk -K 20 -W 3000'
 #	'lazy.IBk -K 100'
-#	'lazy.IBk -K 10 -I'
-#	'lazy.IBk -K 20 -I'
+	'lazy.IBk -K 10 -I'
+	'lazy.IBk -K 20 -I'
 #	'lazy.IBk -K 10 -F'
 #	'lazy.IBk -K 20 -F'
 #	'functions.SMO'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 0.5"'
-#	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 1.5"'
+	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 1.5"'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 2.0"'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 3.0"'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 0.5 -L"'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 1.5 -L"'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 2.0 -L"'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 3.0 -L"'
-#	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 4.0 -L"'
+	'functions.SMO -K "weka.classifiers.functions.supportVector.PolyKernel -E 4.0 -L"'
 #	'functions.SMO -K "weka.classifiers.functions.supportVector.RBFKernel"'       
-#	'bayes.NaiveBayes'
+	'bayes.NaiveBayes'
 #	'bayes.NaiveBayes -K ' 
 )
 tests_length=${#tests[@]}
@@ -36,7 +36,8 @@ do
 	echo "Doing ${tests[i]}"
 	SAVE_FILE=${tests[i]//[[:space:]]}
 	SAVE_FILE=${SAVE_FILE//\"}
-	EXEC_STR="$J weka.classifiers.${tests[i]} -t $TESTFILE -d models/$SAVE_FILE -x 10 > results/$SAVE_FILE -i"
+	#EXEC_STR="$J weka.classifiers.${tests[i]} -t $TESTFILE -d models/$SAVE_FILE -x 10 > results/$SAVE_FILE -i"
+	EXEC_STR="$J weka.classifiers.${tests[i]} -t $TESTFILE -d models/$SAVE_FILE -split-percentage 66 > results/$SAVE_FILE -i"
 	eval $EXEC_STR
 	echo "Results for $SAVE_FILE" 
 	tail -n -20 results/$SAVE_FILE | head -n 10
